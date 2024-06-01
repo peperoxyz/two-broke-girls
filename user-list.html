@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>User List</title>
+  </head>
+  <body>
+    <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+      <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+        <div class="absolute inset-0 bg-gradient-to-r from-red-500 to-yellow-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+        <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+          <div class="max-w-md mx-auto">
+            <h1 class="text-2xl font-semibold text-center">User List</h1>
+            <div class="grid gap-6 mt-3">
+              {{range .}}
+              <div onclick="copyEmail('{{ .Email }}')" class="hover:cursor-pointer p-4 bg-white shadow-lg rounded-lg flex items-center space-x-4 hover:bg-blue-50 transition">
+                <div class="flex-shrink-0">
+                  <img src="{{.Image}}" alt="{{.Name}}" class="h-12 w-12 object-cover object-top rounded-full" />
+                </div>
+                <div>
+                  <div class="text-base font-semibold text-zinc-900">{{.Name}}</div>
+                  <div class="text-red-500 text-base">{{.Email}}</div>
+                  <!-- <div class="text-zinc-500 text-sm">{{.Address}}</div> -->
+                  <!-- <div class="text-zinc-500 text-xs font-bold mt-1">{{.Job}}</div> -->
+                </div>
+              </div>
+              {{end}}
+            </div>
+          </div>
+          <!-- button back -->
+          <div class="relative pt-5 flex justify-center">
+            <a href="/login" class="hover:bg-yellow-700 bg-yellow-600 text-white text-lg rounded-md px-4 py-1 mt-4">Back</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function copyEmail(email) {
+        const tempInput = document.createElement("input");
+        document.body.appendChild(tempInput);
+        tempInput.value = email;
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        alert("Email copied to clipboard: " + email);
+      }
+    </script>
+  </body>
+</html>

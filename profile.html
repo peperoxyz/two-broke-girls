@@ -1,0 +1,90 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Profile</title>
+  </head>
+  <body>
+    <h1>Profile</h1>
+    <p>Email: {{.Email}}</p>
+    <p>Name: {{.Name}}</p>
+    <p>Address: {{.Address}}</p>
+    <p>Job: {{.Job}}</p>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <title>User Profile</title>
+  </head>
+  <body>
+    <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+      <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+        <div class="absolute inset-0 bg-gradient-to-r from-red-500 to-yellow-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+        <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+          <div class="max-w-md mx-auto">
+            <div>
+              <h1 class="text-2xl font-semibold">User Profile</h1>
+            </div>
+            <div class="image mt-5 flex justify-center">
+              <img src="{{.Image}}" alt="{{.Name}}" class="h-32 w-52 object-contain object-top" />
+            </div>
+            <div class="divide-y divide-gray-200">
+              <div class="py-4 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                <div class="relative">
+                  <div class="text-gray-600 text-sm">Name</div>
+                  <div class="text-gray-900 font-semibold">{{.Name}}</div>
+                </div>
+                <div class="relative">
+                  <div class="flex justify-between">
+                    <div class="text-gray-600 text-sm">Email Address</div>
+                    <!-- <div class="text-blue-600 text-sm underline text-sm">copy</div> -->
+                  </div>
+                  <div class="flex items-center">
+                    <div id="email" class="text-red-500 font-semibold mr-3">{{.Email}}</div>
+                    <box-icon id="copyIcon" class="cursor-pointer" name="copy" type="solid" title="copy email" color="#238ce7"></box-icon>
+                  </div>
+                </div>
+                <div class="relative">
+                  <div class="text-gray-600 text-sm">Address</div>
+                  <div class="text-gray-900 font-semibold">{{.Address}}</div>
+                </div>
+                <div class="relative">
+                  <div class="text-gray-600 text-sm">Job</div>
+                  <div class="text-gray-900 font-semibold">{{.Job}}</div>
+                </div>
+                <!-- back button -->
+                <div class="relative pt-5 flex justify-center">
+                  <a href="/user-list" class="hover:bg-yellow-700 bg-yellow-600 text-white text-lg rounded-md px-4 py-1 mt-4">Back</a>
+                </div>
+                <div class="relative mt-5 flex justify-center">
+                  <a href="/login" class="underline text-red-500 hover:text-red-800 rounded-md px-4 py-2">Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.getElementById("copyIcon").addEventListener("click", function () {
+        const emailElement = document.getElementById("email");
+        const email = emailElement.textContent;
+
+        const tempInput = document.createElement("input");
+        document.body.appendChild(tempInput);
+        tempInput.value = email;
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+
+        alert("Email copied to clipboard: " + email);
+      });
+    </script>
+  </body>
+</html>
